@@ -1,17 +1,14 @@
 # Dashboard de volumetria de atendimento
+import pandas as pd
+import matplotlib.pyplot as plt
 
-Análise simples de volume de atendimento por canal.
+df = pd.read_csv("dados_atendimento.csv")
 
-## Objetivo
-Visualizar a distribuição de atendimentos entre:
-- Telefone
-- Chat
-- Email
+resumo = df.groupby("canal")["quantidade"].sum()
 
-## Tecnologias
-- Python
-- Pandas
-- Matplotlib
+print("Resumo por canal:")
+print(resumo)
 
-## Como executar
-1. Instale dependências:
+resumo.plot(kind="bar", title="Volume por canal")
+plt.ylabel("Quantidade")
+plt.show()
